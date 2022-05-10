@@ -1,0 +1,33 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #F5D471;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    background-color: #F5D471;
+    width: 483px;
+    height: 483px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.container .tile {
+    background-color: rgb(102, 9, 102);
+    width: 160px;
+    height: 160px;
+    color: #64F5C3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+}
+
+.container .tile:hover {
+    cursor: pointer;
+}
