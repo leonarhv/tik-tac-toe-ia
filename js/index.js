@@ -16,7 +16,8 @@ const bestMove = () => {
         for (let j=0; j<3; j++) {
             if (tiles[i][j].textContent == '') {
                 tiles[i][j].textContent = O;
-                let score = minimax(tiles, 0, false);
+                let playBoard = tiles.map(tileSet => tileSet.map(tiles => tiles.textContent));
+                let score = minimax(playBoard, 0, false);
                 tiles[i][j].textContent = '';
                 if (score > bestScore) {
                     bestScore = score;
@@ -43,14 +44,15 @@ const minimax = (board, depth, isMaximizing) => {
     }
 
     if(isMaximizing) {
-        return 1;
         let bestScore = -Infinity;
         for (let i=0; i<3; i++) {
             for (let j=0; j<3; j++) {
-                if (board[i][j].textContent == '') {
-                    board[i][j].textContent = O;
+                if (board[i][j] == '') {
+                    board[i][j] = O;
+                    turn = X
                     let score = minimax(board, depth + 1, false);
-                    board[i][j].textContent = '';
+                    turn = O
+                    board[i][j] = '';
                     bestScore = Math.max(score, bestScore);
                 }
             }
@@ -60,10 +62,12 @@ const minimax = (board, depth, isMaximizing) => {
         let bestScore = Infinity;
         for (let i=0; i<3; i++) {
             for (let j=0; j<3; j++) {
-                if (board[i][j].textContent == '') {
-                    board[i][j].textContent = X;
+                if (board[i][j] == '') {
+                    board[i][j] = X;
+                    turn = O;
                     let score = minimax(board, depth + 1, true);
-                    board[i][j].textContent = '';
+                    turn = X
+                    board[i][j] = '';
                     bestScore = Math.min(score, bestScore);
                 }
             }
